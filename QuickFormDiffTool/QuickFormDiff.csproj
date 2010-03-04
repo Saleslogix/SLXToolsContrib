@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DFB44522-90E6-46C2-9B04-70AEEA7AC6C6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QuickFormDiff</RootNamespace>
+    <AssemblyName>QuickFormDiff</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ActiproSoftware.SyntaxEditor.Net20, Version=4.0.262.0, Culture=neutral, PublicKeyToken=21a821480e210563, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\ActiPro-SyntaxEditor\ActiproSoftware.SyntaxEditor.Net20.dll</HintPath>
+    </Reference>
+    <Reference Include="ActiproSoftware.Wizard.Net20, Version=3.0.133.0, Culture=neutral, PublicKeyToken=d00326104f1b454d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\ActiPro-Wizard\ActiproSoftware.Wizard.Net20.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinTree.v7.1, Version=7.1.20071.40, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Infragistics\WinForms\bin\Infragistics2.Win.UltraWinTree.v7.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.v7.1, Version=7.1.20071.40, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Infragistics\WinForms\bin\Infragistics2.Win.v7.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Sage.Platform, Version=7.5.2.2136, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Debug\Sage.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Sage.Platform.Application, Version=7.5.2.2136, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Debug\Sage.Platform.Application.dll</HintPath>
+    </Reference>
+    <Reference Include="Sage.Platform.Application.UI.WinForms, Version=7.5.2.2146, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Debug\Sage.Platform.Application.UI.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Sage.Platform.CommonTree, Version=7.5.2.2146, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Debug\Sage.Platform.CommonTree.dll</HintPath>
+    </Reference>
+    <Reference Include="Sage.Platform.Configuration, Version=7.5.2.2146, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Debug\Sage.Platform.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Sage.Platform.Design, Version=7.5.2.2146, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Debug\Sage.Platform.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Sage.Platform.IDEModule, Version=7.5.2.2136, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Debug\Sage.Platform.IDEModule.dll</HintPath>
+    </Reference>
+    <Reference Include="Sage.Platform.Mashups, Version=7.5.2.2136, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Debug\Sage.Platform.Mashups.dll</HintPath>
+    </Reference>
+    <Reference Include="Sage.Platform.Projects, Version=7.5.2.2136, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Debug\Sage.Platform.Projects.dll</HintPath>
+    </Reference>
+    <Reference Include="Sage.Platform.Projects.AdminModule, Version=7.5.2.2136, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Debug\Sage.Platform.Projects.AdminModule.dll</HintPath>
+    </Reference>
+    <Reference Include="Sage.Platform.QuickForms, Version=7.5.2.2136, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Debug\Sage.Platform.QuickForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Sage.Platform.QuickForms.QFControls, Version=7.5.2.2136, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Debug\Sage.Platform.QuickForms.QFControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Sage.Platform.Windows.Forms, Version=7.5.2.2146, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Debug\Sage.Platform.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AllFormPropertiesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Properties\AllFormPropertiesControl.Designer.cs">
+      <DependentUpon>AllFormPropertiesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormChangesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormChangesControl.Designer.cs">
+      <DependentUpon>FormChangesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDesignerHost.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormDesignerHost.Designer.cs">
+      <DependentUpon>FormDesignerHost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\AllFormPropertiesControl.resx">
+      <DependentUpon>AllFormPropertiesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormChangesControl.resx">
+      <DependentUpon>FormChangesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDesignerHost.resx">
+      <DependentUpon>FormDesignerHost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="QuickFormComparison.cs" />
+    <Compile Include="QuickFormReader.cs" />
+    <Compile Include="ResxUpdater.cs" />
+    <Compile Include="TypeResolutionService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Sage\Platform\FileSystem\Sage.Platform.FileSystem.csproj">
+      <Project>{D283AD44-EE1D-4ABC-9BBB-28DA8B5FCCEA}</Project>
+      <Name>Sage.Platform.FileSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sage\Platform\QuickForms\Designer\Sage.Platform.QuickForms.Designer.csproj">
+      <Project>{8E371EFB-EF5C-46EB-8456-4586E7F99056}</Project>
+      <Name>Sage.Platform.QuickForms.Designer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
