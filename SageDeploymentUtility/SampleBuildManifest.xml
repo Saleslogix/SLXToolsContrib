@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<BuildManifest>
+
+  <!-- Connection String to Saleslogix -->
+  <ConnectionString>Provider=SLXOLEDB.1;Persist Security Info=True;Initial Catalog=Saleslogix_Eval;Data Source=SageDevelopment;Password=;User ID=Admin;Extended Properties="PORT=1706;LOG=ON;SVRCERT=12345;ACTIVITYSECURITY=OFF;TIMEZONE=NONE"</ConnectionString>
+
+  <!-- Path to the model -->
+  <VFSPath>C:\Development\DevVFS\VFS752\Model</VFSPath>
+
+  <!-- Path where all the output files should be generated -->
+  <OutputPath>c:\Temp\Output</OutputPath>
+
+  <!-- should the core objects be built -->
+  <BuildCore>true</BuildCore>
+
+  <!-- *** Begin Single portal deployment settings *** -->
+  <PortalName>SlxClient</PortalName>
+  
+  <!-- Path to where the final portal should be deployed to -->
+  <DeploymentPath>c:\Temp\Deployment</DeploymentPath>
+  
+  <!-- should the single portal be pre-compiled -->
+  <Precompile>false</Precompile>
+
+  <!-- *** End Single portal deployment settings ***-->
+
+  
+  <!-- *** Begin multi portal deployment settings *** -->
+  
+  <!-- 
+    <DeploymentName>Core Portals</DeploymentName>  
+  -->
+
+  <!-- *** End multi portal deployment settings *** -->
+  
+</BuildManifest>
