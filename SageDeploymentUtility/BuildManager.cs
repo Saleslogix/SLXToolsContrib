@@ -77,15 +77,28 @@ namespace SalesLogix.Deployment
             ApplicationContext.Initialize("DeploymentUtility");
             XmlConfigurator.Configure();
 
+
+            if (!string.IsNullOrEmpty(Manifest.VFSPath))
+            {
+                if (!Directory.Exists(Manifest.VFSPath))
+                {
+                    log.Info("VFS path provided does not exist.");
+                    return;
+                }
+
+                if (!Directory.Exists(Path.Combine(Manifest.VFSPath, "Entity Model")))
+                {
+                    log.Info("It looks as if the VFS path is not pointing to the Model Directory. Please recheck your VFS Path");
+                    return;
+                }
+            }
+
             string connString = Manifest.ConnectionString;
 
             log.Info("DeploymentUtility");
 
-
             ServiceCollection services = InitializeServices(connString);
             SetRunningIdentity();
-
-
 
             if (Utility.CanConnect(connString))
             {
@@ -161,6 +174,7 @@ namespace SalesLogix.Deployment
 
             var settings = cm.GetConfiguration<BuildSettings>();
             settings.SolutionFolder = Manifest.OutputPath;
+            settings.AcceptChanges();
 
             cm.WriteConfiguration(settings);
 
@@ -194,7 +208,6 @@ namespace SalesLogix.Deployment
 
                         VFSQuery.UpgradeToBatchMode();
                         var files = new List<string>();
-
 
                         // Build Interfaces
                         string[] interfaceFiles = BuildPlatform(project, service, PlatformGuids.CommonGuid);
