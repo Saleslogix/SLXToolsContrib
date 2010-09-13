@@ -22,3 +22,24 @@ Precompile - Determines if the utility should run a precompile operation on the 
 DeploymentName - If more than one portal is to be deployed and/or IIS configuration is required the Deployment name should be set instead of the PortalName
 
 **************************************************
+**************************************************
+
+QuickDeploymentModule.csproj
+This project should work with SalesLogix 7.5.2 or 7.5.3 and possibly other versions.
+
+This is an admin module that contains an optimized and stripped down version of the normal deployment command in the application architect.
+It introduces a new main menu item labeled "Deploy" with a child menu item "Deploy to portal target".
+A dialog will popup to let you choose a target portal from your debug deployment (typically core portals).
+This is meant to be used by developers as a more efficient incremental deployment tool.
+
+There are several things missing from this deployment command:
+There is no support for cancelling a deployment,
+Virtual directories are not configured,
+Deployment manifests are not used (in fact they are deleted if found),
+There is no cleanup step (obsolete files like renames are not removed)
+No ServiceHosts.xml file is generated (used for process orchestration???),
+No progress dialog is shown - messages are shown in output window instead
+
+To try it out, drop the build dll into the application architect's Modules folder.
+
+**************************************************

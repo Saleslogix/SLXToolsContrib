@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,4 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CustomDeploymentMessage" xml:space="preserve">
+    <value>Getting custom deployment steps...</value>
+  </data>
+  <data name="DeployMenuText" xml:space="preserve">
+    <value>&amp;Deploy</value>
+  </data>
+  <data name="DeployTargetPortalText" xml:space="preserve">
+    <value>Deploy to Portal Target...</value>
+  </data>
+  <data name="Error_No_Provider_Items" xml:space="preserve">
+    <value>Unable to retrieve deployment items from deployment provider : {0}</value>
+  </data>
+  <data name="GatheringDeploymentFiles" xml:space="preserve">
+    <value>Gathering deployment files...</value>
+  </data>
+  <data name="GeneratingPortalPage" xml:space="preserve">
+    <value>Generating Portal Page {0}.</value>
+  </data>
+  <data name="Status_Copy_Target_Files" xml:space="preserve">
+    <value>Copying portal files to target</value>
+  </data>
+  <data name="Status_Deploy_Get_Items" xml:space="preserve">
+    <value>Getting Deployment items</value>
+  </data>
 </root>

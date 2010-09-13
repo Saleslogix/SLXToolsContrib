@@ -1,17 +1,16 @@
-using System.Resources;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("QuickFormDiff")]
+[assembly: AssemblyTitle("QuickDeploymentModule")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Sage Software, Inc.")]
-[assembly: AssemblyProduct("QuickFormDiff")]
-[assembly: AssemblyCopyright("©1997-2010 Sage Software, Inc. All Rights Reserved")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("QuickDeploymentModule")]
+[assembly: AssemblyCopyright("Copyright ©  2010")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -21,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("03ae3544-d216-4599-bccc-4a387ae58db1")]
+[assembly: Guid("031b942b-3654-46a7-8e38-f057fa91824f")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -33,7 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("7.5.2.2207")]
-[assembly: AssemblyFileVersion("7.5.2.2207")]
-[assembly: NeutralResourcesLanguageAttribute("en-US")]
-[assembly: AssemblyInformationalVersion("7.5.2")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

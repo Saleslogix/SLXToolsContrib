@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesLogixPortalDeploymentU
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickFormDiff", "QuickFormDiffTool\QuickFormDiff.csproj", "{DFB44522-90E6-46C2-9B04-70AEEA7AC6C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickDeploymentModule", "QuickDeploymentModule\QuickDeploymentModule.csproj", "{AD13DE7D-B12B-4779-A51C-F7A7DC254946}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{DFB44522-90E6-46C2-9B04-70AEEA7AC6C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFB44522-90E6-46C2-9B04-70AEEA7AC6C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFB44522-90E6-46C2-9B04-70AEEA7AC6C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD13DE7D-B12B-4779-A51C-F7A7DC254946}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD13DE7D-B12B-4779-A51C-F7A7DC254946}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD13DE7D-B12B-4779-A51C-F7A7DC254946}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD13DE7D-B12B-4779-A51C-F7A7DC254946}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

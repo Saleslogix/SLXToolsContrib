@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Module xmlns="urn:schemas-sage-com:Module"
+        ModuleTypeName="QuickDeploymentModule.ModuleInit, QuickDeploymentModule">
+  <Localization>
+    <ResourceManager Alias="res" ResourceAssembly="QuickDeploymentModule" ResourceNamespace="QuickDeploymentModule.Properties.Resources"/>
+  </Localization>
+  <UIElements>
+    <UIExtensionSite Uri="mnu://MainMenu">
+      <ChildElements>
+        <UIElement Uri="mnu://MainMenu/Deploy" TypeName="ToolStripMenuItem" PositionRefUri="mnu://MainMenu/Build" UIElementPosition="AfterUri" RegisterAsSite="true" RegistrationPropertyName="DropDownItems">
+          <Properties>
+            <Property Name="Text">{res:DeployMenuText}</Property>
+          </Properties>
+        </UIElement>
+      </ChildElements>
+    </UIExtensionSite>
+
+    <UIExtensionSite Uri="mnu://MainMenu/Deploy">
+      <ChildElements>
+        <UIElement Uri="mnu://MainMenu/DeploTargetPortaly" Command="cmd://DeployTargetPortal" TypeName="ToolStripMenuItem">
+          <Properties>
+            <Property Name="Text">{res:DeployTargetPortalText}</Property>
+          </Properties>
+        </UIElement>
+      </ChildElements>
+    </UIExtensionSite>
+  </UIElements>
+</Module>
