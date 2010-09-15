@@ -75,8 +75,11 @@ namespace QuickDeploymentModule
 
                 //retrieve and deploy files
                 ShadowCopyItemCollection deploymentItems = GetPortalDeploymentItems(deploymentActions);
+                var copyStart = watch.Elapsed.TotalSeconds;
                 DeployTarget(deploymentItems);
-            
+                var copyEnd = watch.Elapsed.TotalSeconds;
+                ReportProgress(string.Format("Copying files to target took {0} seconds.", copyEnd - copyStart));
+                
                 //Delete any target manifest
                 var targetManifest = FileSystem.GetFileInfo(System.IO.Path.Combine(
                     _target.GetFolderName(_targetPortal), "deployables.manifest.xml"));
@@ -181,28 +184,38 @@ namespace QuickDeploymentModule
             ReportProgress(Resources.GatheringDeploymentFiles);
 
             //Application Configuration
-            Stream appConfigStream = (Stream) CallPrivateMethod("ToApplicationConfigFile", new object[] { _portal });
-            results.Add(new ShadowCopyItem(CONST_APPCONFIGFILE, appConfigStream));
+            CallWithTiming("Generating application.xml", () => {
+                Stream appConfigStream = (Stream) CallPrivateMethod("ToApplicationConfigFile", new object[] { _portal });
+                results.Add(new ShadowCopyItem(CONST_APPCONFIGFILE, appConfigStream));
+                });
 
-            ReportProgress("Getting support files...");
-            AddSupportFilesToDeployables(results);
+            CallWithTiming("Getting support files", () => AddSupportFilesToDeployables(results));
             
-            ReportProgress("Getting navitems...");
-            CallPrivateMethod("AddNavItemsToDeployables", new object[] { _portal, false, results, _worker });
+            CallWithTiming("Getting navitems", 
+                () => CallPrivateMethod("AddNavItemsToDeployables", new object[] { _portal, false, results, _worker }));
 
-            ReportProgress("Getting menu items...");
-            CallPrivateMethod("AddMenuItemsToDeployables", new object[] { _portal, false, results, _worker });
+            CallWithTiming("Getting menu items", 
+                () => CallPrivateMethod("AddMenuItemsToDeployables", new object[] { _portal, false, results, _worker }));
 
-            ReportProgress("Getting pages...");
-            AddPagesToDeployables(results);
+            CallWithTiming("Getting pages", () => AddPagesToDeployables(results));
 
-            ReportProgress("Getting smart part mappings...");
-            CallPrivateMethod("AddSmartPartMappingsToDeployables", new object[] { _portal, results, _worker });
+            CallWithTiming("Getting smart part mappings",
+                () => CallPrivateMethod("AddSmartPartMappingsToDeployables", new object[] { _portal, results, _worker }));
 
-            ReportProgress("Getting resources...");
-            CallPrivateMethod("AddResourcesToDeployables", new object[] { _portal, results, _worker });
+            CallWithTiming("Getting resources",
+                () => CallPrivateMethod("AddResourcesToDeployables", new object[] { _portal, results, _worker }));
 
             return results;
+        }
+
+        private void CallWithTiming(string messagePrefix, Action action)
+        {
+            ReportProgress(messagePrefix + "...");
+            var watch = new Stopwatch();
+            watch.Start();
+            action();
+            watch.Stop();
+            ReportProgress(string.Format("{0} took {1} seconds.", messagePrefix, watch.Elapsed.TotalSeconds));
         }
 
         private object CallPrivateMethod(string methodName, object[] parameters)
