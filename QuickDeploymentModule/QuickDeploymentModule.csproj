@@ -35,28 +35,35 @@
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\log4net.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="sage.platform">
       <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\sage.platform.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Sage.Platform.Application">
       <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.Application.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="Sage.Platform.Deployment, Version=7.5.3.1005, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Sage.Platform.Deployment">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.Deployment.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="Sage.Platform.FileSystem, Version=7.5.4.4599, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Sage.Platform.FileSystem">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.FileSystem.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="Sage.Platform.Projects, Version=7.5.2.2136, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Sage.Platform.Projects">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.Projects.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="Sage.Platform.WebPortal.Design, Version=7.5.3.1005, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Sage.Platform.WebPortal.Design">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.WebPortal.Design.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -64,7 +71,6 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
