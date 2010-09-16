@@ -8,6 +8,7 @@ using System.Reflection;
 using log4net;
 using QuickDeploymentModule.Properties;
 using Sage.Platform.Application;
+using Sage.Platform.Application.UI;
 using Sage.Platform.Deployment;
 using Sage.Platform.Deployment.JSBuilder;
 using Sage.Platform.FileSystem.Interfaces;
@@ -32,6 +33,7 @@ namespace QuickDeploymentModule
     /// </remarks>
     public class QuickDeploy
     {
+        private UIWorkItem _workItem;
         private DeploymentTarget _target;
         private DeploymentTargetPortal _targetPortal;
         private PortalApplication _portal;
@@ -39,8 +41,9 @@ namespace QuickDeploymentModule
         private BackgroundWorker _worker;
         private ILog _outputLog = LogManager.GetLogger("Sage.Build");
 
-        public QuickDeploy(DeploymentTarget target, DeploymentTargetPortal targetPortal)
-        {            
+        public QuickDeploy(DeploymentTarget target, DeploymentTargetPortal targetPortal, UIWorkItem workItem)
+        {
+            _workItem = workItem;
             _target = target;
             _targetPortal = targetPortal;
 
@@ -98,6 +101,9 @@ namespace QuickDeploymentModule
 
                 watch.Stop();
                 ReportProgress(string.Format("Deployment took {0} seconds.", watch.Elapsed.TotalSeconds));
+                
+                _workItem.Commands["cmd://QuickDeploy/ResetFileWatcher"].Execute();
+                _workItem.State["LastQuickDeployedPortal"] = _portal.PortalAlias;
             }
             catch (Exception ex)
             {
@@ -284,6 +290,13 @@ namespace QuickDeploymentModule
 
         private void AddSupportFilesToDeployables(ShadowCopyItemCollection deployables)
         {
+            if (ThisPortalWasAlreadyDeployedDuringThisSession())
+            {
+                var changes = (List<string>) _workItem.State["FilesChangedSinceLastQuickDeploy"];
+                if (!changes.Any(url => url.StartsWith(_portal.SupportFilesDefinition.ResolvedProjectPath)))
+                    return;
+            }
+
             LinkedFile[] supportFiles = _portal.SupportFiles.GetFiles(true);
 
             foreach (LinkedFile item in supportFiles)
@@ -309,5 +322,9 @@ namespace QuickDeploymentModule
             }
         }
 
+        private bool ThisPortalWasAlreadyDeployedDuringThisSession()
+        {
+            return (string)_workItem.State["LastQuickDeployedPortal"] == _portal.PortalAlias;           
+        }
     }
 }
