@@ -293,8 +293,18 @@ namespace QuickDeploymentModule
             if (ThisPortalWasAlreadyDeployedDuringThisSession())
             {
                 var changes = (List<string>) _workItem.State["FilesChangedSinceLastQuickDeploy"];
-                if (!changes.Any(url => url.StartsWith(_portal.SupportFilesDefinition.ResolvedProjectPath)))
-                    return;
+
+                var supportFileChanges = changes.Where(url => url.StartsWith(_portal.SupportFilesDefinition.ResolvedProjectPath));
+                foreach (string url in supportFileChanges)
+                {
+                    var file = _portal.FilePath.DriveInfo.GetFileInfo(url);
+                    var trimPosition = url.IndexOf("SupportFiles");
+                    var relativeUrl = url.Substring(trimPosition + "SupportFiles".Length + 1);
+                    if (file.Exists)
+                        deployables.Add(new LazyShadowCopyItem(url, relativeUrl));
+                }
+
+                return;
             }
 
             LinkedFile[] supportFiles = _portal.SupportFiles.GetFiles(true);
@@ -303,7 +313,8 @@ namespace QuickDeploymentModule
             {
                 string relativeUrl = _manager.SupportFilePathToAppRelativePath(item.ProjectPath);
 
-                if (PortalUtil.IsShadowCopyFile(item.ProjectPath) && item.Source.Exists)
+                //if (PortalUtil.IsShadowCopyFile(item.ProjectPath) && item.Source.Exists)
+                if (item.Source.Exists)
                     deployables.Add(new LazyShadowCopyItem(item.Source.FullName, relativeUrl));
             }
         }
