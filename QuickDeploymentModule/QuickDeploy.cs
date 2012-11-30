@@ -36,7 +36,7 @@ namespace QuickDeploymentModule
         private UIWorkItem _workItem;
         private DeploymentTarget _target;
         private DeploymentTargetPortal _targetPortal;
-        private PortalApplication _portal;
+        private CabApplicationPortal _portal;
         private PortalDeploymentManager _manager;
         private BackgroundWorker _worker;
         private ILog _outputLog = LogManager.GetLogger("Sage.Build");
@@ -50,7 +50,7 @@ namespace QuickDeploymentModule
             var projectContext = ApplicationContext.Current.Services.Get<IProjectContextService>(true);
             var portalModel = projectContext.ActiveProject.Models.Get<PortalModel>();
             Guid portalId = new Guid(_targetPortal.InstanceId);
-            _portal = portalModel.PortalApplications.FirstOrDefault(portal => portal.Id == portalId);
+            _portal = portalModel.PortalApplications.OfType<CabApplicationPortal>().FirstOrDefault(portal => portal.Id == portalId);
             if (_portal == null)
                 throw new Exception(string.Format("Could not find portal application by Id: {0}", portalId));
 
@@ -71,13 +71,13 @@ namespace QuickDeploymentModule
                 var watch = new Stopwatch();
                 watch.Start();
                 _manager = new PortalDeploymentManager();
-                List<IDeploymentActionProvider> deploymentActions = _manager.GetDeploymentActions(_portal);
+                List<IDeploymentActionProvider> deploymentActionProviders = _manager.GetDeploymentActions(_portal);
 
                 //Before Deployment Actions
-                deploymentActions.ForEach(provider => provider.BeforeDeployment(_portal, _worker));
+                deploymentActionProviders.ForEach(provider => provider.BeforeDeployment(_portal, _worker));
 
                 //retrieve and deploy files
-                ShadowCopyItemCollection deploymentItems = GetPortalDeploymentItems(deploymentActions);
+                ShadowCopyItemCollection deploymentItems = GetPortalDeploymentItems(deploymentActionProviders);
                 var copyStart = watch.Elapsed.TotalSeconds;
                 DeployTarget(deploymentItems);
                 var copyEnd = watch.Elapsed.TotalSeconds;
@@ -90,12 +90,14 @@ namespace QuickDeploymentModule
                     targetManifest.Delete();
 
                 //AfterDeployment actions
-                deploymentActions.ForEach(provider => provider.AfterDeployment(_portal, _worker));
+                var deploymentService = ApplicationContext.Current.Services.Get<IPortalDeploymentService>();
+                var deployment = deploymentService.GetActiveDeployment();//bvv 121128 check
+                deploymentActionProviders.ForEach(provider => provider.AfterDeployment(_portal, _worker, deployment));
 
                 //cleanup any open streams
                 deploymentItems.ForEach(item =>
                                             {
-                                                if (!(item is LazyShadowCopyItem) && item.Data != null)
+                                                if (!(item is IShadowCopyItem) && item.Data != null)
                                                     item.Data.Dispose();
                                             });
 
@@ -130,11 +132,9 @@ namespace QuickDeploymentModule
                     IShadowCopyItem[] providerItems = provider.GetDeployableItems(_portal, _worker);
                     if (providerItems != null)
                     {
-                        Array.ForEach(providerItems, item =>
+                        providerItems.Cast<ShadowCopyItem>().ForEach(item =>
                         {
-                            if (deploymentItems != null &&
-                                !deploymentItems.ContainsUrl(item.Url))
-                                deploymentItems.Add(item);
+                            deploymentItems.Add(item);
                         });
                     }
                 }
@@ -243,9 +243,8 @@ namespace QuickDeploymentModule
             if (string.IsNullOrEmpty(deploymentPath)) 
                 return;
             
-            for (int i = 0; i < deploymentItems.Count; i++)
+            foreach (IShadowCopyItem item in deploymentItems)
             {
-                IShadowCopyItem item = deploymentItems[i];
                 LazyShadowCopyItem lazyItem = item as LazyShadowCopyItem;
 
                 FileInfo targetFile = new FileInfo(System.IO.Path.Combine(deploymentPath, item.Url));
@@ -301,7 +300,13 @@ namespace QuickDeploymentModule
                     var trimPosition = url.IndexOf("SupportFiles");
                     var relativeUrl = url.Substring(trimPosition + "SupportFiles".Length + 1);
                     if (file.Exists)
-                        deployables.Add(new LazyShadowCopyItem(url, relativeUrl));
+                    {
+                        var file1 = file;
+                        deployables.Add(new ShadowCopyItem(relativeUrl,
+                                                           new DelayedStream(
+                                                               () => file1.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite)
+                                                               ), true));
+                    }
                 }
 
                 return;
@@ -315,7 +320,13 @@ namespace QuickDeploymentModule
 
                 //if (PortalUtil.IsShadowCopyFile(item.ProjectPath) && item.Source.Exists)
                 if (item.Source.Exists)
-                    deployables.Add(new LazyShadowCopyItem(item.Source.FullName, relativeUrl));
+                {
+                    LinkedFile item1 = item;
+                    deployables.Add(new ShadowCopyItem(relativeUrl,
+                                                       new DelayedStream(
+                                                           () => item1.Source.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite)
+                                                           ), true));
+                }
             }
         }
 

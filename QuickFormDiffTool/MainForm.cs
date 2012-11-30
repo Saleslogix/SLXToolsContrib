@@ -8,10 +8,14 @@ using Sage.Platform.IDEModule;
 using Sage.Platform.Projects;
 using Sage.Platform.Projects.Interfaces;
 using Sage.Platform.Projects.Localization;
+using Sage.Platform.Projects.AdminModule;
 using Sage.Platform.QuickForms;
 using SageApp = Sage.Platform.Application;
 using Sage.Platform.Application.UI.WinForms;
 using ApplicationContext=Sage.Platform.Application.ApplicationContext;
+using Sage.Platform.Orm.Entities;
+using Sage.Platform.IDEModule.Actipro;
+using Sage.Platform.Application.UI;
 
 namespace QuickFormDiff
 {
@@ -55,6 +59,28 @@ namespace QuickFormDiff
         private void SetupApplicationContext()
         {
             SageApp.ApplicationContext.Initialize(Assembly.GetExecutingAssembly().GetName().Name);
+
+            #region Root Services
+
+            var rootWorkItem = SageApp.ApplicationContext.Current.RootWorkItem;
+            var rootServices = rootWorkItem.Services;
+
+            rootServices.AddNew<SelectionService, ISelectionService>();
+            rootServices.AddNew<SimpleEditorService, IEditorService>();
+            rootServices.AddNew<SimpleProjectReferencesService, IProjectReferencesService>();
+            rootServices.AddNew<CodeEditorService, ICodeEditorService>();
+            rootServices.AddNew<EditItemService, IEditItemService>();
+            rootServices.AddNew<DeleteItemService, IDeleteItemService>();
+            rootServices.AddNew<DefaultActiproComponentService, IActiproComponentService>();
+
+            // Type services
+            var typeService = new TypeResolutionService();
+            rootServices.Add(typeof(ITypeResolutionService), typeService);
+            rootServices.Add(typeof(ITypeDiscoveryService), typeService);
+            rootServices.Add(typeof(DynamicTypeService), new DynamicTypeService(typeService));
+
+            #endregion Root Services
+
             _baseWorkItem = SetupWorkItem();
             _customWorkItem = SetupWorkItem();
             _currentWorkItem = SetupWorkItem();
@@ -63,15 +89,18 @@ namespace QuickFormDiff
         private static WorkItem SetupWorkItem()
         {
             WorkItem workItem = SageApp.ApplicationContext.Current.WorkItems.AddNew(typeof(WorkItem));
+
             workItem.Services.AddNew(typeof(TypeResolutionService), typeof(ITypeResolutionService));
             workItem.Services.AddNew(typeof(SelectionService), typeof(ISelectionService));
             workItem.Services.AddNew(typeof(BrowsableObjectService), typeof(SageApp.IBrowsableObjectService));
+
             return workItem;
         }
 
         private static IProject SetupProject(WorkItem workItem, string projectPath)
         {
             var modelTypes = new ModelTypeCollection();
+            modelTypes.Add(new ModelType(typeof(OrmModel)));
             modelTypes.Add(new ModelType(typeof(QuickFormModel)));
             var projectWorkspace = new ProjectWorkspace(projectPath);
             IProject project = new Project(projectWorkspace, modelTypes);
@@ -97,6 +126,7 @@ namespace QuickFormDiff
         private static IQuickFormDefinition LoadQuickForm(WorkItem workItem, string projectPath, string quickFormPath)
         {
             IProject project = SetupProject(workItem, projectPath);
+
             var qfModel = project.Models.Get<QuickFormModel>();
             IQuickFormDefinition form = qfModel.LoadDefinition(quickFormPath);
             var dummy = form.LocalResources; //force loading of LocalizationService while project context is correct
@@ -212,6 +242,12 @@ namespace QuickFormDiff
                 return;
 
             _baseQuickForm = LoadQuickForm(_baseWorkItem, BaseProjectPath, QuickFormPath);
+
+            var rootWorkItem = SageApp.ApplicationContext.Current.RootWorkItem;
+            RemoveServiceFromWorkItem<IProjectContextService>(rootWorkItem);
+            var rootServices = rootWorkItem.Services;
+            rootServices.Add<IProjectContextService>(_baseWorkItem.Services.Get<IProjectContextService>());
+
             _baseFormReader = new QuickFormReader(_baseQuickForm);
             _baseFormReader.ReadAllProperties();
 

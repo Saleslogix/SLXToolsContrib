@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>QuickDeploymentModule</RootNamespace>
     <AssemblyName>QuickDeploymentModule</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Debug\</OutputPath>
+    <OutputPath>C:\Program Files %28x86%29\SalesLogix\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -34,35 +34,35 @@
   <ItemGroup>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\log4net.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\SupportFiles\log4net.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="sage.platform">
-      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\sage.platform.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\Platform\sage.platform.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Sage.Platform.Application">
-      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.Application.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\Platform\Sage.Platform.Application.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Sage.Platform.Deployment">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.Deployment.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\Platform\Sage.Platform.Deployment.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Sage.Platform.FileSystem">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.FileSystem.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\Platform\Sage.Platform.FileSystem.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Sage.Platform.Projects">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.Projects.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\Platform\Sage.Platform.Projects.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Sage.Platform.WebPortal.Design">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.WebPortal.Design.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\Platform\Sage.Platform.WebPortal.Design.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />

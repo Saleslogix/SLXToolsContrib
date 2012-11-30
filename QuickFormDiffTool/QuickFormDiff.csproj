@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>QuickFormDiff</RootNamespace>
     <AssemblyName>QuickFormDiff</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>
     </SccProjectName>
@@ -24,12 +24,13 @@
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Debug\</OutputPath>
+    <OutputPath>C:\Program Files %28x86%29\SalesLogix\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -44,86 +45,109 @@
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ActiproSoftware.SyntaxEditor.Net20, Version=4.0.262.0, Culture=neutral, PublicKeyToken=21a821480e210563, processorArchitecture=MSIL">
+    <Reference Include="ActiproSoftware.SyntaxEditor.Net20, Version=4.0.289.0, Culture=neutral, PublicKeyToken=21a821480e210563, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(ProgramFiles)\SalesLogix\SupportFiles\ActiproSoftware.SyntaxEditor.Net20.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="ActiproSoftware.Wizard.Net20, Version=3.0.133.0, Culture=neutral, PublicKeyToken=d00326104f1b454d, processorArchitecture=MSIL">
+    <Reference Include="ActiproSoftware.Wizard.Net20, Version=3.0.144.0, Culture=neutral, PublicKeyToken=d00326104f1b454d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(ProgramFiles)\SalesLogix\SupportFiles\ActiproSoftware.Wizard.Net20.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Infragistics2.Win.UltraWinTree.v7.1, Version=7.1.20071.40, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(ProgramFiles)\SalesLogix\SupportFiles\Infragistics2.Win.UltraWinTree.v7.1.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Infragistics2.Win.v7.1, Version=7.1.20071.40, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(ProgramFiles)\SalesLogix\SupportFiles\Infragistics2.Win.v7.1.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="Microsoft.Practices.ObjectBuilder, Version=7.5.1.100, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Unity, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\SalesLogix\SupportFiles\Microsoft.Practices.ObjectBuilder.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Sage.Platform, Version=7.5.2.2136, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\Platform\Sage.Platform.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Sage.Platform.Application, Version=7.5.2.2136, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.Application.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\Platform\Sage.Platform.Application.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Sage.Platform.Application.UI.WinForms, Version=7.5.2.2146, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.Application.UI.WinForms.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\Platform\Sage.Platform.Application.UI.WinForms.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Sage.Platform.CommonTree, Version=7.5.2.2146, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.CommonTree.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\Platform\Sage.Platform.CommonTree.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Sage.Platform.Configuration, Version=7.5.2.2146, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.Configuration.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\Platform\Sage.Platform.Configuration.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Sage.Platform.Design, Version=7.5.2.2146, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.Design.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\Platform\Sage.Platform.Design.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Sage.Platform.FileSystem, Version=7.5.1.1742, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.FileSystem.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\Platform\Sage.Platform.FileSystem.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Sage.Platform.IDEModule, Version=7.5.2.2136, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.IDEModule.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\Platform\Sage.Platform.IDEModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Sage.Platform.Mashups, Version=7.5.2.2136, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.Mashups.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\Platform\Sage.Platform.Mashups.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Sage.Platform.Projects, Version=7.5.2.2136, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.Projects.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\Platform\Sage.Platform.Projects.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Sage.Platform.Projects.AdminModule, Version=7.5.2.2136, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.Projects.AdminModule.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\Platform\Sage.Platform.Projects.AdminModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Sage.Platform.QuickForms, Version=7.5.2.2136, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.QuickForms.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\Platform\Sage.Platform.QuickForms.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Sage.Platform.QuickForms.Designer, Version=7.5.1.1742, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.QuickForms.Designer.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\Platform\Sage.Platform.QuickForms.Designer.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Sage.Platform.QuickForms.QFControls, Version=7.5.2.2136, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.QuickForms.QFControls.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\Platform\Sage.Platform.QuickForms.QFControls.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Sage.Platform.Windows.Forms, Version=7.5.2.2146, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.Windows.Forms.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\Platform\Sage.Platform.Windows.Forms.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -169,6 +193,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleProjectReferencesService.cs" />
     <EmbeddedResource Include="Properties\AllFormPropertiesControl.resx">
       <DependentUpon>AllFormPropertiesControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -191,7 +216,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -204,7 +231,10 @@
     <Compile Include="QuickFormComparison.cs" />
     <Compile Include="QuickFormReader.cs" />
     <Compile Include="ResxUpdater.cs" />
-    <Compile Include="TypeResolutionService.cs" />
+    <Compile Include="SimpleEditorService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\AA_Large.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

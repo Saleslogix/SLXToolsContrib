@@ -38,5 +38,10 @@ namespace QuickDeploymentModule
         {
             get { throw new NotImplementedException(); }
         }
+
+        public ShadowCopyItemUpdateMode UpdateMode
+        {
+            get { throw new NotImplementedException(); }
+        }
     }
 }

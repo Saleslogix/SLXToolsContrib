@@ -4,9 +4,9 @@ namespace QuickDeploymentModule
 {
     public class GeneratorProviderBase
     {
-        protected PortalApplication _portal;
+        protected CabApplicationPortal _portal;
 
-        public GeneratorProviderBase(PortalApplication portal)
+        public GeneratorProviderBase(CabApplicationPortal portal)
         {
             _portal = portal;
         }

@@ -52,8 +52,6 @@ namespace SalesLogix.Deployment
     /// </summary>
     public class BuildManager
     {
-
-
         #region Fields
         private ILog log = LogManager.GetLogger("DeploymentUtility.Program");
         #endregion
@@ -62,7 +60,6 @@ namespace SalesLogix.Deployment
         public BuildManifest Manifest { get; private set; }
         Sage.Platform.Configuration.ConfigurationManager ConfigManager { get; set; }
         #endregion
-
 
         #region CTOR
         public BuildManager(BuildManifest manifest)
@@ -391,7 +388,7 @@ namespace SalesLogix.Deployment
 
             string portalName = Manifest.PortalName;
 
-            PortalApplication application = PortalApplication.Get(portalName);
+            CabApplicationPortal application = CabApplicationPortal.Get(portalName);
 
             if (application != null)
             {
@@ -421,8 +418,7 @@ namespace SalesLogix.Deployment
                     if (Manifest.Precompile)
                     {
                         log.Info(Resources.log_precompile_started);
-                        DeploymentUtil util = new DeploymentUtil();
-                        util.PrecompileSite(callback, buildParameter, Manifest.DeploymentPath, null, null, "/" + portalName, false);
+                        DeploymentUtil.PrecompileSite(callback, buildParameter, Manifest.DeploymentPath, null, null, "/" + portalName, false);
                         log.Info(Resources.log_precompile_finished);
                     }
 
@@ -450,7 +446,7 @@ namespace SalesLogix.Deployment
             };
 
             // Configure the target
-            var target = new Sage.Platform.Deployment.DeploymentTarget("FS")
+            var target = new DeploymentTarget("FS")
             {
                 IsActive = true
             };

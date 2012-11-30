@@ -59,7 +59,7 @@ namespace QuickDeploymentModule
         readonly QuickPageGenerator _gen;
         readonly PortalPage _page;
 
-        internal QuickPageGenerationProvider(QuickPageGenerator generator, PortalPage page, PortalApplication portal)
+        internal QuickPageGenerationProvider(QuickPageGenerator generator, PortalPage page, CabApplicationPortal portal)
             : base(portal)
         {
             _gen = generator;
@@ -87,8 +87,8 @@ namespace QuickDeploymentModule
             var childResources = _page.SmartParts.ToDictionary(part => part.SmartPartId, part => part.LocalResources);
             DateTime LatestResxChange = GetLatestResxChange(childResources.Values.ToList());
 
-            Dictionary<string, byte[]> mergedResources = ProjectResourceManager.FlattenResources(
-                _page.PageResources, pageName, childResources, new Dictionary<string, string>());
+            var mergedResources = _page.PageResources.FlattenResources(
+                pageName, childResources, new Dictionary<string, string>());
 
             foreach (KeyValuePair<string, byte[]> merged in mergedResources)
             {
