@@ -1,3 +1,11 @@
+CreateUnicodeDB
+Tool to convert a ANSI single byte database to Unicode - varchar to nvarchar, etc.
+Also will convert the project model types to Unicode types.
+
+Note, that if your database already contains multiple multi-byte data it will not convert the data to unicode.  This will need to be modified to handle those situations.
+
+
+
 **************************************************
 QuickFormDiff.csproj
 This project is based on SalesLogix 7.5.2.
