@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateUnicodeDB", "CreateUnicodeDB\CreateUnicodeDB.csproj", "{DEA9042B-543A-4B18-86F7-F09F22853A11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DEA9042B-543A-4B18-86F7-F09F22853A11}.Debug|x86.ActiveCfg = Debug|x86
+		{DEA9042B-543A-4B18-86F7-F09F22853A11}.Debug|x86.Build.0 = Debug|x86
+		{DEA9042B-543A-4B18-86F7-F09F22853A11}.Release|x86.ActiveCfg = Release|x86
+		{DEA9042B-543A-4B18-86F7-F09F22853A11}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
